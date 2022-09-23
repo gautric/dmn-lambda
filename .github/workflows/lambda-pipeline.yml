@@ -32,3 +32,7 @@ jobs:
 
       - name: Check S3 Bucket ${{ env.S3_URI }}
         run: aws s3api head-bucket  --bucket ${{ env.S3_URI }} 
+
+      - name: Create S3 Bucket  
+        if: failure()
+        run: aws s3 mb  s3://${{ env.S3_URI }} 
