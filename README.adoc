@@ -1,10 +1,29 @@
 # DMN Lambda
 
+## DMN 
 
-
+## KYC
 
 ## Test
 
-    curl '${URL}/KYC' -X POST  -H 'Accept: application/json'  -H 'Content-Type: application/json'   --data-raw '{"PEP":true,"Amount":100000,"Fiscal Residency":"FR"}' | jq
+    curl ${URL}/KYC -X POST  -H 'Accept: application/json'  -H 'Content-Type: application/json'   --data-raw '{"PEP":true,"Amount":100000,"Fiscal Residency":"FR"}' | jq
 
+```
+{
+    "Amount Rule": "HIGH",
+    "Level to Int": "function Level to Int( Level )",
+    "Max Level": "function Max Level( list of Level )",
+    "KYC": {
+        "Score": "HIGH",
+        "Level": 150
+    },
+    "Fiscal Residency Rule": "LOW",
+    "Amount": 100000,
+    "Int to Level": "function Int to Level( Int )",
+    "PEP Rule": "HIGH",
+    "PEP": true,
+    "Fiscal Residency": "FR",
+    "Level to Score": "function Level to Score( Level )"
+}
 
+```
