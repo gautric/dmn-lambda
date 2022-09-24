@@ -7,7 +7,7 @@ on:
 
 env:
   AWS_REGION: eu-west-1
-  AWS_S3_BUCKET_NAME: dmn-lambda
+  AWS_S3_BUCKET_NAME: dmn-lambda-123
   AWS_STACK_NAME: dmn-lambda
 
 jobs:
@@ -34,10 +34,12 @@ jobs:
         run: mvn clean package
 
       - name: Check S3 Bucket
+        id: check-s3-bucket
         run: aws s3api head-bucket  --bucket ${{ env.AWS_S3_BUCKET_NAME }} 
 
       - name: Create S3 Bucket  
-        if: failure()
+        id: create-s3-bucket
+        if: steps.check-s3-bucket.outcome == 'failure'
         run: aws s3 mb s3://${{ env.AWS_S3_BUCKET_NAME }} 
 
       - name: Deploy Lambda
