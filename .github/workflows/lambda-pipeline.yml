@@ -1,3 +1,5 @@
+name: dmn-lambda-ci
+
 on:
   push:
     branches:
