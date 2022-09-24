@@ -11,9 +11,8 @@ env:
   AWS_STACK_NAME: dmn-lambda
 
 jobs:
-  build-deploy:
+  setup-build:
     runs-on: ubuntu-latest
-    environment: aws
     steps:
       - name: Checkout Source Code
         uses: actions/checkout@v3
@@ -25,6 +24,11 @@ jobs:
           java-version: '11'
           cache: 'maven'
 
+  configure-aws:
+    needs: setup-build
+    runs-on: ubuntu-latest
+    environment: aws
+    steps:
       - name: Setup SAM
         uses: aws-actions/setup-sam@v2
 
