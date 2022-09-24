@@ -31,7 +31,7 @@ jobs:
       - name: Build with Maven
         run: mvn clean package
 
-      - name: Check S3 Bucket ${{ env.S3_BN }}
+      - name: Check S3 Bucket
         run: aws s3api head-bucket  --bucket ${{ env.S3_BN }} 
 
       - name: Create S3 Bucket  
