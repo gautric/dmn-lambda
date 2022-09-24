@@ -7,7 +7,7 @@ on:
 
 env:
   AWS_REGION: eu-west-1
-  AWS_S3_BUCKET_NAME: dmn-lambda-test
+  AWS_S3_BUCKET_NAME: dmn-lambda
   AWS_STACK_NAME: dmn-lambda
 
 jobs:
