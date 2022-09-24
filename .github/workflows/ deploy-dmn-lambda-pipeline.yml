@@ -1,4 +1,4 @@
-name: dmn-lambda-ci
+name: Deploy DMN Lambda
 
 on:
   push:
