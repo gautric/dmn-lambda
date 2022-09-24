@@ -5,8 +5,8 @@ on:
 
 env:
   AWS_REGION: eu-west-1
-  S3_BN: dmn-lambda-test
-  AWS_SN: dmn-lambda
+  AWS_S3_BUCKET_NAME: dmn-lambda-test
+  AWS_STACK_NAME: dmn-lambda
 
 jobs:
   build-deploy:
@@ -32,11 +32,11 @@ jobs:
         run: mvn clean package
 
       - name: Check S3 Bucket
-        run: aws s3api head-bucket  --bucket ${{ env.S3_BN }} 
+        run: aws s3api head-bucket  --bucket ${{ env.AWS_S3_BUCKET_NAME }} 
 
       - name: Create S3 Bucket  
         if: failure()
-        run: aws s3 mb s3://${{ env.S3_BN }} 
+        run: aws s3 mb s3://${{ env.AWS_S3_BUCKET_NAME }} 
 
       - name: Deploy Lambda
-        run: sam deploy -t src/main/aws/sam.jvm.yaml  --region ${{ env.AWS_REGION }} --capabilities CAPABILITY_IAM --no-progressbar --s3-bucket ${{ env.S3_BN }}   --stack-name ${{ env.AWS_SN}}   --disable-rollback --no-confirm-changeset  --s3-prefix ${{ env.AWS_SN}} 
+        run: sam deploy -t src/main/aws/sam.jvm.yaml --region ${{ env.AWS_REGION }} --capabilities CAPABILITY_IAM --no-progressbar --s3-bucket ${{ env.AWS_S3_BUCKET_NAME }} --stack-name ${{ env.AWS_STACK_NAME}} --disable-rollback --no-confirm-changeset --s3-prefix ${{ env.AWS_STACK_NAME}} 
