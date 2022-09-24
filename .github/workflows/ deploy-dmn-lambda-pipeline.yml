@@ -15,16 +15,21 @@ jobs:
     runs-on: ubuntu-latest
     environment: aws
     steps:
-      - name: Checkout 
+      - name: Checkout Source Code
         uses: actions/checkout@v3
-      - name: Setup java
+
+      - name: Install java
         uses: actions/setup-java@v3
         with:
           distribution: 'corretto'
           java-version: '11'
           cache: 'maven'
-      - uses: aws-actions/setup-sam@v2
-      - uses: aws-actions/configure-aws-credentials@v1
+
+      - name: Setup SAM
+        uses: aws-actions/setup-sam@v2
+
+      - name: Configure AWS Credential
+        uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -41,7 +46,6 @@ jobs:
       - name: Create S3 Bucket  
         id: create-s3-bucket
         continue-on-error: true
-#        if: steps.check-s3-bucket.outcome == 'failure'
         run: aws s3 mb s3://${{ env.AWS_S3_BUCKET_NAME }} 
 
       - name: Deploy Lambda
