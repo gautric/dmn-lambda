@@ -27,13 +27,13 @@ https://AAABBBDDDCCCC.execute-api.AWS_REGION.amazonaws.com
 
 Execute this command once for exporting URL to bash env
 
-    export URL=`aws apigatewayv2 get-apis --output json --query "Items[?Tags.\"aws:cloudformation:stack-name\"=='dmn-lambda'].ApiEndpoint | [0] "  | jq -r`
+    export DMN_LAMBDA_URL=`aws apigatewayv2 get-apis --output json --query "Items[?Tags.\"aws:cloudformation:stack-name\"=='dmn-lambda'].ApiEndpoint | [0] "  | jq -r`
 
 ### CURL Execution
 
 Execute a curl command
 
-    curl ${URL}/KYC -X POST  -H 'Accept: application/json'  -H 'Content-Type: application/json'   --data-raw '{"PEP":true,"Amount":100000,"Fiscal Residency":"FR"}' | jq
+    curl ${DMN_LAMBDA_URL}/KYC -X POST  -H 'Accept: application/json'  -H 'Content-Type: application/json'   --data-raw '{"PEP":true,"Amount":100000,"Fiscal Residency":"FR"}' | jq
 
 ```
 {
