@@ -5,11 +5,6 @@ on:
     branches:
       - main
 
-env:
-  AWS_REGION: ${{ env.AWS_REGION }}
-  AWS_S3_BUCKET_NAME: ${{ env.AWS_S3_BUCKET_NAME }}
-  AWS_STACK_NAME: ${{ env.AWS_STACK_NAME }}
-
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
@@ -23,7 +18,7 @@ jobs:
           distribution: 'corretto'
           java-version: '11'
           cache: 'maven'
-      - uses: aws-actions/setup-sam@v1
+      - uses: aws-actions/setup-sam@v2
       - uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
