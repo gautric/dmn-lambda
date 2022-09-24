@@ -1,0 +1,10 @@
+# DMN Lambda
+
+
+
+
+## Test
+
+    curl '${URL}/KYC' -X POST  -H 'Accept: application/json'  -H 'Content-Type: application/json'   --data-raw '{"PEP":true,"Amount":100000,"Fiscal Residency":"FR"}' | jq
+
+
