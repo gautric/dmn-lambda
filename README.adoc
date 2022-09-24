@@ -4,7 +4,34 @@
 
 ## KYC
 
+
+
+
 ## Test
+
+
+### Lambda URL
+
+
+To retrieve URL Lambda.
+
+    export AWS_STACK_NAME=dmn-lambda
+
+    aws apigatewayv2 get-apis --output json --query "Items[?Tags.\"aws:cloudformation:stack-name\"=='${AWS_STACK_NAME}'].ApiEndpoint | [0] "  | jq -r
+
+You should get this kind of output.
+
+```
+https://AAABBBDDDCCCC.execute-api.AWS_REGION.amazonaws.com
+```
+
+Execute this command once to export URL to bash env
+
+    export URL=`aws apigatewayv2 get-apis --output json --query "Items[?Tags.\"aws:cloudformation:stack-name\"=='dmn-lambda'].ApiEndpoint | [0] "  | jq -r`
+
+### CURL Execution
+
+Execute a curl command
 
     curl ${URL}/KYC -X POST  -H 'Accept: application/json'  -H 'Content-Type: application/json'   --data-raw '{"PEP":true,"Amount":100000,"Fiscal Residency":"FR"}' | jq
 
