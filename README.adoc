@@ -25,7 +25,7 @@ You should get this kind of output.
 https://AAABBBDDDCCCC.execute-api.AWS_REGION.amazonaws.com
 ```
 
-Execute this command once to export URL to bash env
+Execute this command once for exporting URL to bash env
 
     export URL=`aws apigatewayv2 get-apis --output json --query "Items[?Tags.\"aws:cloudformation:stack-name\"=='dmn-lambda'].ApiEndpoint | [0] "  | jq -r`
 
