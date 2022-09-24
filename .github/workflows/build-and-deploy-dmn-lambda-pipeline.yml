@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'src/**'
+      - '.github/**'
+      - 'pom.xml'
 
 env:
   AWS_REGION: eu-west-1
