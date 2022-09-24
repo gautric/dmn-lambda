@@ -35,11 +35,13 @@ jobs:
 
       - name: Check S3 Bucket
         id: check-s3-bucket
+        continue-on-error: true
         run: aws s3api head-bucket  --bucket ${{ env.AWS_S3_BUCKET_NAME }} 
 
       - name: Create S3 Bucket  
         id: create-s3-bucket
-        if: steps.check-s3-bucket.outcome == 'failure'
+        continue-on-error: true
+#        if: steps.check-s3-bucket.outcome == 'failure'
         run: aws s3 mb s3://${{ env.AWS_S3_BUCKET_NAME }} 
 
       - name: Deploy Lambda
