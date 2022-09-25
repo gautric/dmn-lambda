@@ -24,7 +24,7 @@
         #   HttpApiEvent:
         #     Type: HttpApi
 
-    DMNServerlessURL
+    DMNServerlessURL:
       Type: AWS::Lambda::Url
       Properties: 
         AuthType: AWS_IAM
