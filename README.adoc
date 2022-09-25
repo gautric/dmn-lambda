@@ -6,11 +6,7 @@ image::https://github.com/gautric/dmn-lambda/actions/workflows/build-and-deploy-
 
 ## KYC
 
-
-
-
 ## Test
-
 
 ### Lambda URL
 
