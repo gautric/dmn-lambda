@@ -25,7 +25,7 @@ You should get this kind of output.
 https://AAABBBDDDCCCC.execute-api.AWS_REGION.amazonaws.com
 ```
 
-Execute this command once for exporting URL to bash env
+Execute this command once for exporting DMN_LAMBDA_URL to bash env
 
     export DMN_LAMBDA_URL=`aws apigatewayv2 get-apis --output json --query "Items[?Tags.\"aws:cloudformation:stack-name\"=='dmn-lambda'].ApiEndpoint | [0] "  | jq -r`
 
@@ -53,4 +53,60 @@ Execute a curl command
     "Level to Score": "function Level to Score( Level )"
 }
 
+```
+
+### Newman (Postman) Execution
+
+
+A Postman collection is available inside `src/main/postman` folder. Newman provides a command line tool to execute a postman collection. Don't forget to pass some AWS Credential too.
+
+    newman run  src/main/postman/KYC-DMN.postman_collection.json  --env-var DMN_LAMBDA_URL=${DMN_LAMBDA_URL} --env-var  AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} --env-var AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} --env-var  AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION} --verbose
+
+
+
+Here is the Newman output.
+
+```
+newman
+
+KYC-DMN
+
+→ Call DMN
+  POST https://AAAAAABBBBBBXXXXXDDDDDEEEEE/KYC  
+  200 OK ★ 229ms time ★ 721B↑ 534B↓ size ★ 12↑ 5↓ headers ★ 0 cookies
+  ┌ ↑ raw ★ 52B
+  │ {"PEP":true,"Amount":100000,"Fiscal Residency":"FR"}
+  └ 
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 352B
+  │ {"Amount Rule":"HIGH","Level to Int":"function Level to Int( Level )","Max Level":"function Max Level( list of Level )","KYC":{"Score":"HIGH","Level":150},"Fiscal Residency Rule":"LOW","Amount":1000
+  │ 00,"Int to Level":"function Int to Level( Int )","PEP Rule":"HIGH","PEP":true,"Fiscal Residency":"FR","Level to Score":"function Level to Score( Level )"}
+  └
+  prepare   wait   dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  78ms      9ms    37ms         24ms            58ms            89ms             8ms        481µs     307ms 
+
+  ✓  response must be valid and have a body
+
+┌─────────────────────────┬────────────────────┬───────────────────┐
+│                         │           executed │            failed │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│              iterations │                  1 │                 0 │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│                requests │                  1 │                 0 │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│            test-scripts │                  2 │                 0 │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│      prerequest-scripts │                  1 │                 0 │
+├─────────────────────────┼────────────────────┼───────────────────┤
+│              assertions │                  1 │                 0 │
+├─────────────────────────┴────────────────────┴───────────────────┤
+│ total run duration: 394ms                                        │
+├──────────────────────────────────────────────────────────────────┤
+│ total data received: 352B (approx)                               │
+├──────────────────────────────────────────────────────────────────┤
+│ average response time: 229ms [min: 229ms, max: 229ms, s.d.: 0µs] │
+├──────────────────────────────────────────────────────────────────┤
+│ average DNS lookup time: 37ms [min: 37ms, max: 37ms, s.d.: 0µs]  │
+├──────────────────────────────────────────────────────────────────┤
+│ average first byte time: 89ms [min: 89ms, max: 89ms, s.d.: 0µs]  │
+└──────────────────────────────────────────────────────────────────┘
 ```
