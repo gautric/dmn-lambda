@@ -53,6 +53,11 @@
 		"type": "awsv4",
 		"awsv4": [
 			{
+				"key": "service",
+				"value": "{{AWS_SERVICE_NAME}}",
+				"type": "string"
+			},
+			{
 				"key": "region",
 				"value": "{{AWS_DEFAULT_REGION}}",
 				"type": "string"
