@@ -1,6 +1,6 @@
 # DMN Lambda
 
-[![Build and Deploy DMN Lambda](https://github.com/gautric/dmn-lambda/actions/workflows/build-and-deploy-dmn-lambda-pipeline.yml/badge.svg)](https://github.com/gautric/dmn-lambda/actions/workflows/build-and-deploy-dmn-lambda-pipeline.yml)
+image::https://github.com/gautric/dmn-lambda/actions/workflows/build-and-deploy-dmn-lambda-pipeline.yml/badge.svg[Build and Deploy DMN Lambda]
 
 ## DMN 
 
