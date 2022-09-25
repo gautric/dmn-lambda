@@ -19,9 +19,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source Code
+        id: checkout-git
         uses: actions/checkout@v3
 
       - name: Install java
+        id: install-java
         uses: actions/setup-java@v3
         with:
           distribution: 'corretto'
@@ -29,9 +31,11 @@ jobs:
           cache: 'maven'
 
       - name: Setup SAM
+        id: setup-sam      
         uses: aws-actions/setup-sam@v2
 
       - name: Configure AWS Credential
+        id: configure-aws      
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -39,6 +43,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Build with Maven
+        id: build-maven      
         run: mvn clean package
 
       - name: Check or Create S3 Bucket
@@ -46,4 +51,5 @@ jobs:
         run: aws s3api head-bucket  --bucket ${{ env.AWS_S3_BUCKET_NAME }} || aws s3 mb s3://${{ env.AWS_S3_BUCKET_NAME }} 
 
       - name: Deploy Lambda
+        id: deploy-lambda      
         run: sam deploy -t src/main/aws/sam.jvm.yaml --region ${{ env.AWS_REGION }} --capabilities CAPABILITY_IAM --no-progressbar --s3-bucket ${{ env.AWS_S3_BUCKET_NAME }} --stack-name ${{ env.AWS_STACK_NAME}} --disable-rollback --no-confirm-changeset --s3-prefix ${{ env.AWS_STACK_NAME}} 
