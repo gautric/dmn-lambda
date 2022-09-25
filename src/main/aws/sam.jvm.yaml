@@ -20,19 +20,6 @@
         MemorySize: 512
         Policies: AWSLambdaBasicExecutionRole
         Timeout: 15
-        Tags: 
-          - Key: "net.a.g:tech"
-            Value: "java"
-          - Key: "net.a.g:tech-version"
-            Value: "11"
-          - Key: "net.a.g:standard"
-            Value: "dmn"
-          - Key: "net.a.g:framework"
-            Value: "quarkus"
-          - Key: "net.a.g:app-version"
-            Value: "1.0.0"
-          - Key: "net.a.g:spec-version"
-            Value: "1.0.0"
         # Events:
         #   HttpApiEvent:
         #     Type: HttpApi
