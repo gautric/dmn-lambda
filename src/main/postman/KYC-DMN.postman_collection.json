@@ -1,0 +1,97 @@
+{
+	"info": {
+		"_postman_id": "9a3fd1c2-f435-4e43-a9e6-bf04dd5308e2",
+		"name": "KYC-DMN",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12964390"
+	},
+	"item": [
+		{
+			"name": "Call DMN",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response must be valid and have a body\", function () {",
+							"     pm.response.to.be.ok;",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"PEP\":true,\"Amount\":100000,\"Fiscal Residency\":\"FR\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{DMN_LAMBDA_URL}}/KYC",
+					"protocol": "https",
+					"host": [
+						"{{DMN_LAMBDA_URL}}"
+					],
+					"path": [
+						"KYC"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "awsv4",
+		"awsv4": [
+			{
+				"key": "region",
+				"value": "{{AWS_DEFAULT_REGION}}",
+				"type": "string"
+			},
+			{
+				"key": "secretKey",
+				"value": "{{AWS_SECRET_ACCESS_KEY}}",
+				"type": "string"
+			},
+			{
+				"key": "accessKey",
+				"value": "{{AWS_ACCESS_KEY_ID}}",
+				"type": "string"
+			},
+			{
+				"key": "addAuthDataToQuery",
+				"value": false,
+				"type": "boolean"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
