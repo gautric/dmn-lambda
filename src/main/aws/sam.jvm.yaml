@@ -10,7 +10,7 @@
 
   Resources:
 
-    DMNLambda:
+    DMNServerlessFunction:
       Type: AWS::Serverless::Function
       Properties:
         Handler: io.quarkus.amazon.lambda.runtime.QuarkusStreamHandler::handleRequest
@@ -22,3 +22,9 @@
         Events:
           HttpApiEvent:
             Type: HttpApi
+
+    DMNApiGatewayApi:
+      Type: AWS::ApiGatewayV2::Api
+      Description: DMN ApiGateway Api
+      DependsOn:
+        - DMNServerlessFunction
