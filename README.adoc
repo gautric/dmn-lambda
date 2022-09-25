@@ -70,7 +70,7 @@ newman
 KYC-DMN
 
 → Call DMN
-  POST https://AAAAAABBBBBBXXXXXDDDDDEEEEE/KYC  
+  POST https://AAABBBDDDCCCC.execute-api.AWS_REGION.amazonaws.com/KYC  
   200 OK ★ 229ms time ★ 721B↑ 534B↓ size ★ 12↑ 5↓ headers ★ 0 cookies
   ┌ ↑ raw ★ 52B
   │ {"PEP":true,"Amount":100000,"Fiscal Residency":"FR"}
