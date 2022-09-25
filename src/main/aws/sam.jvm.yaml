@@ -24,9 +24,9 @@
         #   HttpApiEvent:
         #     Type: HttpApi
 
-    # DMNApiGatewayApi:
-    #   Type: AWS::ApiGatewayV2::Api
-    #   Description: DMN ApiGateway Api
-    #   ProtocolType: HTTP
-    #   DependsOn:
-    #     - DMNServerlessFunction
+    DMNServerlessURL
+      Type: AWS::Lambda::Url
+      Properties: 
+        AuthType: AWS_IAM
+        TargetFunctionArn: !Ref DMNServerlessFunction
+
