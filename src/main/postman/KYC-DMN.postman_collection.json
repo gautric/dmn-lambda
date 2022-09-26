@@ -13,8 +13,6 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"",
-							"",
 							"var expect = {",
 							"    \"Amount Rule\": \"HIGH\",",
 							"    \"Level to Int\": \"function Level to Int( Level )\",",
