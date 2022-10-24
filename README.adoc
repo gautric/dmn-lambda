@@ -9,8 +9,8 @@ image::https://img.shields.io/badge/AWS-Lambda-%23FF9900?style=flat-square&logo=
 ## DMN 
 
 link:https://www.omg.org/dmn/[DMN™](Decision Model and Notation™) is an link:https://www.omg.org/[OMG] standard to develop complex rules engine. 
-This standard provides some graphical components developer can use easily for designing.
-
+This standard provides some graphical components designer can use easily for designing.
+Designer is mainly a business analyst, because DMN is a low-code standard.
 
 ## Test
 
