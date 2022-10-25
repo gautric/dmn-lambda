@@ -5,17 +5,32 @@ image::https://img.shields.io/badge/DMN-1.3-blue?style=flat-square[DMN]
 image::https://img.shields.io/badge/Quarkus-2.13-blue?style=flat-square&logo=quarkus&logoColor=white[Quarkus 2.13] 
 image::https://img.shields.io/badge/AWS-Lambda-%23FF9900?style=flat-square&logo=amazon-aws&logoColor=white[Lambda]
 
-
 ## DMN 
 
 link:https://www.omg.org/dmn/[DMN™](Decision Model and Notation™) is an link:https://www.omg.org/[OMG] standard to develop complex rules engine. 
-This standard provides some graphical components designer can use easily for designing.
+This standard provides some graphical components designer can use easily for building complex rule system.
 Designer is mainly a business analyst, because DMN is a low-code standard.
 
-## Test
+## Requirements
+
+* AWS Account with Lamdba Function Grant
+
+
+## Compile
+
+This sample uses Maven configuration file. Execute the command below to compile/build. 
+
+    mvn clean package
+
+## Deploy
+
+Here is the command to deploy the DMN Lambda function to AWS.
+
+    sam deploy -t src/main/aws/sam.local.yaml
+
+This command will create all stuffs into AWS infrastructure for executing the Lambda.
 
 ### Lambda URL
-
 
 To retrieve URL Lambda.
 
