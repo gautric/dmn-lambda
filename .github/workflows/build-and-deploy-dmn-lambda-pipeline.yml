@@ -52,4 +52,4 @@ jobs:
 
       - name: Deploy Lambda
         id: deploy-lambda      
-        run: sam deploy -t src/main/aws/sam.jvm.yaml --region ${{ env.AWS_REGION }} --capabilities CAPABILITY_IAM --no-progressbar --s3-bucket ${{ env.AWS_S3_BUCKET_NAME }} --stack-name ${{ env.AWS_STACK_NAME}} --disable-rollback --no-confirm-changeset --s3-prefix ${{ env.AWS_STACK_NAME}} 
+        run: sam deploy -t src/main/aws/sam.gh.yaml --region ${{ env.AWS_REGION }} --capabilities CAPABILITY_IAM --no-progressbar --s3-bucket ${{ env.AWS_S3_BUCKET_NAME }} --stack-name ${{ env.AWS_STACK_NAME}} --disable-rollback --no-confirm-changeset --s3-prefix ${{ env.AWS_STACK_NAME}} 
