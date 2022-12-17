@@ -2,6 +2,12 @@
   Transform: AWS::Serverless-2016-10-31
   Description: DMN AWS Lambda
 
+  Parameters:
+    DMNLambdaInitiator:
+      Type: String
+      Default: "sam"
+
+
   Globals:
     Api:
       EndpointConfiguration: REGIONAL
@@ -32,6 +38,7 @@
           project-accound-id: !Ref "AWS::AccountId"
           project-aws-partition: !Ref "AWS::Partition"
           project-aws-region: !Ref "AWS::Region"
+          project-sam-initiator: !Ref DMNLambdaInitiator
 
   Outputs:
     DmnLambdaApi:
