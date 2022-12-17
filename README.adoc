@@ -15,7 +15,6 @@ Designer is mainly a business analyst, because DMN is a low-code standard.
 
 * AWS Account with Lamdba Function Grant
 
-
 ## Compile
 
 This sample uses Maven configuration file. Execute the command below to compile/build. 
@@ -34,7 +33,7 @@ This command will create all stuffs into AWS infrastructure for executing the La
 
 To retrieve URL Lambda.
 
-    export AWS_STACK_NAME=dmn-lambda
+    export AWS_STACK_NAME=dmn-lambda-sam
 
     aws apigatewayv2 get-apis --output json --query "Items[?Tags.\"aws:cloudformation:stack-name\"=='${AWS_STACK_NAME}'].ApiEndpoint | [0] "  | jq -r
 
@@ -46,7 +45,7 @@ https://AAABBBDDDCCCC.execute-api.AWS_REGION.amazonaws.com
 
 Execute this command once for exporting DMN_LAMBDA_URL to bash env
 
-    export DMN_LAMBDA_URL=`aws apigatewayv2 get-apis --output json --query "Items[?Tags.\"aws:cloudformation:stack-name\"=='dmn-lambda'].ApiEndpoint | [0] "  | jq -r`
+    export DMN_LAMBDA_URL=`aws apigatewayv2 get-apis --output json --query "Items[?Tags.\"aws:cloudformation:stack-name\"=='${AWS_STACK_NAME}'].ApiEndpoint | [0] "  | jq -r`
 
 ### CURL Execution
 
