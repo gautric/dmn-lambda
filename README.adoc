@@ -25,7 +25,7 @@ This sample uses Maven configuration file. Execute the command below to compile/
 
 Here is the command to deploy the DMN Lambda function to AWS.
 
-    sam deploy -t src/main/aws/sam.local.yaml
+    sam deploy  --confirm-changeset -t src/main/aws/sam.tmpl.yaml
 
 This command will create all stuffs into AWS infrastructure for executing the Lambda.
 
