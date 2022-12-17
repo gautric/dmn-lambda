@@ -1,0 +1,47 @@
+  AWSTemplateFormatVersion: '2010-09-09'
+  Transform: AWS::Serverless-2016-10-31
+  Description: DMN AWS Lambda
+
+  Globals:
+    Api:
+      EndpointConfiguration: REGIONAL
+      BinaryMediaTypes:
+        - "application/json"
+
+  Resources:
+
+    DMNServerlessFunction:
+      Type: AWS::Serverless::Function
+      Properties:
+        Description: KYC DMN Kogito with AWS Lambda 
+        Handler: io.quarkus.amazon.lambda.runtime.QuarkusStreamHandler::handleRequest
+        Runtime: java11
+        CodeUri: ../../../target/function.zip
+        MemorySize: 512
+        Policies: AWSLambdaBasicExecutionRole
+        Timeout: 15
+        Events:
+          HttpApiEvent:
+            Type: HttpApi
+        Tags:
+          project-ns: urn://kyc.g.a.net/api/2022
+          project-version: 2022 
+          project-spec: KYC v2022-10
+          project-name: KYC 
+          project-author-twitter: gautric_io
+          project-accound-id: !Ref "AWS::AccountId"
+          project-aws-partition: !Ref "AWS::Partition"
+          project-aws-region: !Ref "AWS::Region"
+
+  Outputs:
+    DmnLambdaApi:
+      Description: URL for application
+      Value: !Sub 'https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/'
+      Export:
+        Name: DmnLambdaApi
+
+    DmnLambdaApiExport4Bash:
+      Description: Copy / Paste Value into your ba/sh shell
+      Value: !Join [ "=", [ "export DMN_LAMBDA_URL", !Sub 'https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/'  ] ]
+      Export:
+        Name: DmnLambdaApiExport4Bash
