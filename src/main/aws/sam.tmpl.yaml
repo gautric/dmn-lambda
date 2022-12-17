@@ -49,5 +49,3 @@
     DmnLambdaApiExport4Bash:
       Description: Copy / Paste Value into your ba/sh shell
       Value: !Join [ "=", [ "export DMN_LAMBDA_URL", !Sub 'https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/'  ] ]
-      # Export:
-      #   Name: DmnLambdaApiExport4Bash
