@@ -7,7 +7,6 @@
       Type: String
       Default: "sam"
 
-
   Globals:
     Api:
       EndpointConfiguration: REGIONAL
